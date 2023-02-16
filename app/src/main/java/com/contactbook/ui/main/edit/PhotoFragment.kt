@@ -1,10 +1,11 @@
-package com.contactbook.ui.main
+package com.contactbook.ui.main.edit
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.contactbook.R
+import com.contactbook.ui.main.BaseFragment
 
 class PhotoFragment : BaseFragment() {
 

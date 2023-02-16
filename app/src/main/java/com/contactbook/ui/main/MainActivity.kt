@@ -1,8 +1,8 @@
-package com.contactbook
+package com.contactbook.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.contactbook.ui.main.MainFragment
+import com.contactbook.R
 
 class MainActivity : AppCompatActivity() {
 

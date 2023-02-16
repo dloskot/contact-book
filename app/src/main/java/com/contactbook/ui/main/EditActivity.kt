@@ -9,6 +9,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.contactbook.R
+import com.contactbook.ui.main.edit.DateOfBirthFragment
+import com.contactbook.ui.main.edit.PhotoFragment
+import com.contactbook.ui.main.edit.WeightFragment
 
 class EditActivity : AppCompatActivity() {
 
