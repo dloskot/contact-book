@@ -7,23 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import com.contactbook.R
 
 class MainFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
-    private lateinit var viewModel: MainViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,11 +24,10 @@ class MainFragment : Fragment() {
 
 
 
-
-        view.findViewById<Button>(R.id.add_button).setOnClickListener {
-            //findNavController().navigate(R.id.action_mainFragment_to_editFragment)
+        //TODO: add clicklistener to binding
+        view.findViewById<Button>(R.id.addButton).setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_editFragment)
         }
-
 
 
 

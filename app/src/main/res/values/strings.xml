@@ -3,6 +3,10 @@
     <string name="add_button">Add Client</string>
 
     <string name="fragment_main_label">Main Screen</string>
-    <string name="fragment_edit_label">Edit Screen</string>
+    <string name="edit_label">Edit Screen</string>
+    <string name="empty_client_list">No clients added so far</string>
+
+    <string name="back_button_label">Back</string>
+    <string name="next_button_label">Next</string>
 
 </resources>

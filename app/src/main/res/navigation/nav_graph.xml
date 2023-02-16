@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
 
     <fragment
         android:id="@+id/mainFragment"
@@ -9,13 +10,12 @@
         android:label="@string/fragment_main_label">
         <action
             android:id="@+id/action_mainFragment_to_editFragment"
-            app:destination="@id/editFragment"/>
+            app:destination="@id/editActivity"/>
     </fragment>
 
-    <fragment
-        android:id="@+id/editFragment"
-        android:name="com.contactbook.ui.main.EditFragment"
-        android:label="@string/fragment_edit_label">
-    </fragment>
+    <activity android:id="@+id/editActivity"
+        android:name="com.contactbook.ui.main.EditActivity"
+        android:label="@string/edit_label">
+    </activity>
 
 </navigation>
