@@ -5,4 +5,11 @@
         <item name="android:textColor">@color/secondary_color</item>
         <item name="android:layout_margin">@dimen/button_margin</item>
     </style>
+
+    <style name="ListItemField" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_margin">@dimen/medium_margin</item>
+    </style>
 </resources>

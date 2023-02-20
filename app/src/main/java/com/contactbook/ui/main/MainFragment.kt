@@ -31,6 +31,7 @@ class MainFragment : Fragment() {
         val clientAdapter = ClientsAdapter()
         viewModel.clientList
             .onEach {
+                updateUI(it.isEmpty())
                 clientAdapter.submitList(it)
             }.catch {
                 //TODO: write log message
@@ -51,5 +52,15 @@ class MainFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun updateUI(isListEmpty: Boolean) {
+        if(isListEmpty) {
+            binding.clientsRecyclerView.visibility = View.GONE
+            binding.message.visibility = View.VISIBLE
+        } else {
+            binding.clientsRecyclerView.visibility = View.VISIBLE
+            binding.message.visibility = View.GONE
+        }
     }
 }

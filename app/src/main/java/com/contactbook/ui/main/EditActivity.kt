@@ -1,55 +1,51 @@
 package com.contactbook.ui.main
 
 import android.os.Bundle
-import android.widget.Button
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.viewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.contactbook.R
+import com.contactbook.databinding.ActivityEditBinding
 import com.contactbook.ui.main.edit.DateOfBirthFragment
 import com.contactbook.ui.main.edit.PhotoFragment
 import com.contactbook.ui.main.edit.WeightFragment
 
 class EditActivity : AppCompatActivity() {
 
-    private lateinit var viewPager: ViewPager2
     private val viewModel: MainViewModel by viewModels()
+    private var _binding: ActivityEditBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit)
-
-        viewPager = findViewById(R.id.pager)
+        _binding = ActivityEditBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val pagerAdapter = ScreenSlidePagerAdapter(this)
-        viewPager.adapter = pagerAdapter
+        binding.pager.adapter = pagerAdapter
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (viewPager.currentItem > 0) {
-                    viewPager.currentItem = viewPager.currentItem - 1
+                if (binding.pager.currentItem > 0) {
+                    binding.pager.currentItem = binding.pager.currentItem - 1
                 }
             }
         }
         onBackPressedDispatcher.addCallback(callback)
 
-        //TODO: add clicklistener to binding
-        findViewById<Button>(R.id.back_button).setOnClickListener {
-            if (viewPager.currentItem > 0){
-                viewPager.currentItem--
+        binding.backButton.setOnClickListener {
+            if (binding.pager.currentItem > 0){
+                binding.pager.currentItem--
             } else {
                 finish()
             }
         }
-        //TODO: add clicklistener to binding
-        findViewById<Button>(R.id.next_button).setOnClickListener {
-            if (viewPager.currentItem < NUM_PAGES - 1) {
-                viewPager.currentItem++
+        binding.nextButton.setOnClickListener {
+            if (binding.pager.currentItem < NUM_PAGES - 1) {
+                binding.pager.currentItem++
             } else {
                 viewModel.saveClient()
                 finish()

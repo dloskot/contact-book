@@ -14,4 +14,7 @@
     <string name="weight">Enter body weight</string>
     <string name="date_of_birth">Enter Date Of Birth</string>
 
+    <string name="item_weight">Weight</string>
+    <string name="item_dob">Date Of Birth</string>
+
 </resources>

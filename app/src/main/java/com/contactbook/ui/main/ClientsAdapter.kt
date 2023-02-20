@@ -18,7 +18,7 @@ class ClientsAdapter : ListAdapter<ClientModel, ClientsAdapter.ClientsViewHolder
         holder.bind(getItem(position))
     }
 
-    class ClientsViewHolder(val binding: ClientItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ClientsViewHolder(private val binding: ClientItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ClientModel) {
             binding.weight.text = item.weight.toString()

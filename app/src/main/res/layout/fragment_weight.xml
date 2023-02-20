@@ -14,7 +14,8 @@
         android:focusedByDefault="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="number"/>
 
     <TextView
         android:id="@+id/metric_units_label"
