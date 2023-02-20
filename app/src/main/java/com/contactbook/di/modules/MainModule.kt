@@ -1,9 +1,7 @@
-package com.contactbook.di
+package com.contactbook.di.modules
 
 import dagger.Module
 
 @Module
 object MainModule {
-
-
 }

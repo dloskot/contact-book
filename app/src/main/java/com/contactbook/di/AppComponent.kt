@@ -1,6 +1,9 @@
 package com.contactbook.di
 
 import android.content.Context
+import com.contactbook.di.modules.MainModule
+import com.contactbook.di.modules.PersistenceModule
+import com.contactbook.di.modules.RemoteModule
 import com.contactbook.ui.main.MainViewModel
 import dagger.BindsInstance
 import dagger.Component
@@ -9,7 +12,9 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-        MainModule::class
+        MainModule::class,
+        PersistenceModule::class,
+        RemoteModule::class
     ]
 )
 interface AppComponent {
