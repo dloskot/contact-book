@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.contactbook.R
 import com.contactbook.data.model.ClientModel
+import com.contactbook.data.model.SystemOfMeasure
 import com.contactbook.databinding.ClientItemBinding
 
 class ClientsAdapter : ListAdapter<ClientModel, ClientsAdapter.ClientsViewHolder>(ClientsDiffUtil) {
@@ -23,7 +24,8 @@ class ClientsAdapter : ListAdapter<ClientModel, ClientsAdapter.ClientsViewHolder
     class ClientsViewHolder(private val binding: ClientItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ClientModel) {
-            binding.weight.text = item.weight.toString()
+            val weightValue = "${item.weight} ${getUnitOfMeasure(item.systemOfMeasure)}"
+            binding.weight.text = weightValue
             binding.dob.text = item.dateOfBirth.toString()
             Glide
                 .with(binding.photo.context)
@@ -31,6 +33,14 @@ class ClientsAdapter : ListAdapter<ClientModel, ClientsAdapter.ClientsViewHolder
                 .centerCrop()
                 .placeholder(R.drawable.portrait_placeholder)
                 .into(binding.photo)
+        }
+
+        private fun getUnitOfMeasure(system: SystemOfMeasure): String {
+            return if (system == SystemOfMeasure.METRIC) {
+                binding.weight.context.getString(R.string.kilogram)
+            } else {
+                binding.weight.context.getString(R.string.pound)
+            }
         }
     }
 }

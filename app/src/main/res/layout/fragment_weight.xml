@@ -5,26 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/client_weight_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/margin_medium"
+        android:padding="0dp"
+        android:text="@string/weight"
+        style="@style/Label"/>
+
     <EditText
         android:id="@+id/client_weight"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/weight_init_of_measure"
+        app:layout_constraintTop_toTopOf="@id/client_weight_label"
         style="@style/WeightEditText"/>
+
+    <TextView
+        android:id="@+id/weight_init_of_measure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/client_weight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/client_weight"
+        android:padding="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_large"
+        android:textColor="@color/white"
+        android:text="@string/pound"/>
 
     <TextView
         android:id="@+id/metric_units_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/client_weight"
-        android:textSize="@dimen/label_text_size"
+        android:layout_marginStart="@dimen/margin_medium"
         android:text="@string/use_metric_units"
-        style="@style/ListItemField"/>
+        style="@style/Label"/>
 
     <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/metric_units"
+        android:id="@+id/metric_units_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/margin_small"
         app:layout_constraintBaseline_toBaselineOf="@id/metric_units_label"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

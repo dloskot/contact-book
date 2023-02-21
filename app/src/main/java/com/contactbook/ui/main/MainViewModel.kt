@@ -16,7 +16,6 @@ class MainViewModel : ViewModel() {
 
     @Inject
     lateinit var repository: ClientRepository
-
     private var _clientList = MutableSharedFlow<List<ClientModel>>()
     var clientList = _clientList.asSharedFlow()
     var currentClient = ClientModel()

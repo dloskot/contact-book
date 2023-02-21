@@ -12,6 +12,8 @@
     <string name="edit_button_label">Edit</string>
 
     <string name="use_metric_units">Use Metric Units</string>
+    <string name="kilogram">kg</string>
+    <string name="pound">lb</string>
     <string name="weight">Enter body weight</string>
     <string name="date_of_birth">Enter Date Of Birth</string>
 
