@@ -23,21 +23,21 @@
         <TextView
             android:id="@+id/weight_label"
             android:text="@string/item_weight"
+            android:textStyle="bold"
             style="@style/ListItemField"/>
 
         <TextView
             android:id="@+id/weight"
-            android:textStyle="bold"
             style="@style/ListItemField"/>
 
         <TextView
             android:id="@+id/dob_label"
             android:text="@string/item_dob"
+            android:textStyle="bold"
             style="@style/ListItemField"/>
 
         <TextView
             android:id="@+id/dob"
-            android:textStyle="bold"
             style="@style/ListItemField"/>
 
         <Button
