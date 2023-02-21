@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.contactbook.R
 import com.contactbook.data.model.ClientModel
 import com.contactbook.databinding.ClientItemBinding
 
@@ -23,6 +25,12 @@ class ClientsAdapter : ListAdapter<ClientModel, ClientsAdapter.ClientsViewHolder
         fun bind(item: ClientModel) {
             binding.weight.text = item.weight.toString()
             binding.dob.text = item.dateOfBirth.toString()
+            Glide
+                .with(binding.photo.context)
+                .load(item.photo)
+                .centerCrop()
+                .placeholder(R.drawable.portrait_placeholder)
+                .into(binding.photo)
         }
     }
 }

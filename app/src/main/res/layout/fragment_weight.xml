@@ -7,26 +7,18 @@
 
     <EditText
         android:id="@+id/client_weight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/medium_margin"
-        android:backgroundTint="@color/toolbar_color"
-        android:focusedByDefault="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:inputType="number"/>
+        style="@style/WeightEditText"/>
 
     <TextView
         android:id="@+id/metric_units_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/medium_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/client_weight"
-        android:textColor="@color/white"
         android:textSize="@dimen/label_text_size"
-        android:text="@string/use_metric_units"/>
+        android:text="@string/use_metric_units"
+        style="@style/ListItemField"/>
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/metric_units"

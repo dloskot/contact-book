@@ -9,7 +9,7 @@
         android:id="@+id/dob_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/medium_margin"
+        android:layout_margin="@dimen/margin_medium"
         android:textColor="@color/white"
         android:text="@string/date_of_birth"
         android:textSize="@dimen/label_text_size"

@@ -25,11 +25,20 @@ class WeightFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentWeightBinding.inflate(inflater, container, false)
-        binding.clientWeight.setText(viewModel.currentClient.weight.toString())
         binding.clientWeight.doOnTextChanged { text, _, _, _ ->
-            viewModel.currentClient.weight = text.toString().toInt()
+            try {
+                val weight = text.toString().toInt()
+                viewModel.currentClient.weight = weight
+            } catch (ex: NumberFormatException) {
+                //TODO: Show error message
+            }
         }
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.clientWeight.setText(viewModel.currentClient.weight.toString())
     }
 
     override fun onDestroyView() {
