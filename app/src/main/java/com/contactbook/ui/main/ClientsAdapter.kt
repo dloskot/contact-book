@@ -10,6 +10,7 @@ import com.contactbook.R
 import com.contactbook.data.model.ClientModel
 import com.contactbook.data.model.SystemOfMeasure
 import com.contactbook.databinding.ClientItemBinding
+import java.time.format.DateTimeFormatter
 
 class ClientsAdapter : ListAdapter<ClientModel, ClientsAdapter.ClientsViewHolder>(ClientsDiffUtil) {
 
@@ -26,7 +27,10 @@ class ClientsAdapter : ListAdapter<ClientModel, ClientsAdapter.ClientsViewHolder
         fun bind(item: ClientModel) {
             val weightValue = "${item.weight} ${getUnitOfMeasure(item.systemOfMeasure)}"
             binding.weight.text = weightValue
-            binding.dob.text = item.dateOfBirth.toString()
+
+            var formatter = DateTimeFormatter.ofPattern(DATE_FORMAT)
+            binding.dob.text = item.dateOfBirth.format(formatter)
+
             Glide
                 .with(binding.photo.context)
                 .load(item.photo)
@@ -41,6 +45,10 @@ class ClientsAdapter : ListAdapter<ClientModel, ClientsAdapter.ClientsViewHolder
             } else {
                 binding.weight.context.getString(R.string.pound)
             }
+        }
+
+        companion object {
+            const val DATE_FORMAT = "MMMM dd, yyyy"
         }
     }
 }

@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import android.widget.DatePicker
 import androidx.lifecycle.ViewModelProvider
 import com.contactbook.databinding.FragmentDateOfBirthBinding
 import com.contactbook.ui.main.BaseFragment
 import com.contactbook.ui.main.MainViewModel
-import java.util.*
+import java.time.LocalDate
 
 class DateOfBirthFragment : BaseFragment() {
 
@@ -25,14 +25,24 @@ class DateOfBirthFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentDateOfBirthBinding.inflate(inflater, container, false)
-        val calendar: Calendar = Calendar.getInstance()
-        calendar.time = viewModel.currentClient.dateOfBirth
-        binding.dateOfBirth.updateDate(
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        )
+        binding.dateOfBirth.setOnDateChangedListener { datePicker, _, _, _ ->
+            saveSelectedDate(datePicker)
+        }
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setDate()
+    }
+
+    private fun setDate() {
+        val date = viewModel.currentClient.dateOfBirth
+        binding.dateOfBirth.updateDate(date.year, date.monthValue, date.dayOfMonth)
+    }
+
+    private fun saveSelectedDate(datePicker: DatePicker) {
+        viewModel.currentClient.dateOfBirth = LocalDate.of(datePicker.year, datePicker.month, datePicker.dayOfMonth)
     }
 
     override fun onDestroyView() {
