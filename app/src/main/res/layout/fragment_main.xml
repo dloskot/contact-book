@@ -12,14 +12,11 @@
         android:id="@+id/clientsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/margin_medium"
-        android:paddingEnd="@dimen/margin_medium"
-        android:paddingTop="@dimen/margin_large"
-        android:paddingBottom="@dimen/margin_large"
+        android:layout_margin="@dimen/margin_medium"
+        android:paddingBottom="@dimen/bottom_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/addButton"
         android:visibility="gone"/>
 
     <TextView

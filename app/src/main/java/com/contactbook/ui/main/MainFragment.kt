@@ -1,5 +1,6 @@
 package com.contactbook.ui.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ class MainFragment : BaseFragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         binding.addButton.setOnClickListener {
@@ -38,6 +40,7 @@ class MainFragment : BaseFragment() {
             .onEach {
                 updateUI(it.isEmpty())
                 clientAdapter.submitList(it)
+                clientAdapter.notifyDataSetChanged()
             }.catch {
                 //TODO: write log message
             }.launchIn(viewLifecycleOwner.lifecycleScope)
