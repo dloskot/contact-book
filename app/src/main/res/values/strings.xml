@@ -9,6 +9,7 @@
 
     <string name="back_button_label">Back</string>
     <string name="next_button_label">Next</string>
+    <string name="done_button_label">Done</string>
     <string name="edit_button_label">Edit</string>
 
     <string name="use_metric_units">Use Metric Units</string>

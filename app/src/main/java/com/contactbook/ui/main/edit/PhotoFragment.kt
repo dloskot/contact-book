@@ -7,23 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.contactbook.R
 import com.contactbook.databinding.FragmentPhotoBinding
 import com.contactbook.ui.main.BaseFragment
-import com.contactbook.ui.main.MainViewModel
 
 class PhotoFragment : BaseFragment() {
 
     private var _binding: FragmentPhotoBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: MainViewModel
     private lateinit var resultLauncher: ActivityResultLauncher<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
         resultLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
             updatePhoto(it)
         }
@@ -35,6 +31,16 @@ class PhotoFragment : BaseFragment() {
             choosePhoto()
         }
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Glide
+            .with(this)
+            .load(viewModel.currentClient.photo)
+            .centerCrop()
+            .placeholder(R.drawable.portrait_placeholder)
+            .into(binding.photo)
     }
 
     private fun updatePhoto(uri: Uri?) {

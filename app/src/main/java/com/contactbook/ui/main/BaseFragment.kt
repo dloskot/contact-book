@@ -1,10 +1,17 @@
 package com.contactbook.ui.main
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import com.contactbook.App
+import javax.inject.Inject
 
 open class BaseFragment : Fragment() {
 
-    private val viewModel: MainViewModel by viewModels()
+    @Inject
+    lateinit var viewModel: MainViewModel
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        App.appComponent.inject(this)
+    }
 }

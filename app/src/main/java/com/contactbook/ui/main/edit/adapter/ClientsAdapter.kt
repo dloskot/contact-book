@@ -12,17 +12,17 @@ import com.contactbook.data.model.SystemOfMeasure
 import com.contactbook.databinding.ClientItemBinding
 import java.time.format.DateTimeFormatter
 
-class ClientsAdapter : ListAdapter<ClientModel, ClientsAdapter.ClientsViewHolder>(ClientsDiffUtil) {
+class ClientsAdapter(private val viewModel: MainViewModel) : ListAdapter<ClientModel, ClientsAdapter.ClientsViewHolder>(ClientsDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClientsViewHolder {
-        return ClientsViewHolder(ClientItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ClientsViewHolder(ClientItemBinding.inflate(LayoutInflater.from(parent.context), parent, false), viewModel)
     }
 
     override fun onBindViewHolder(holder: ClientsViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    class ClientsViewHolder(private val binding: ClientItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ClientsViewHolder(private val binding: ClientItemBinding, private val viewModel: MainViewModel) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ClientModel) {
             val weightValue = "${item.weight} ${getUnitOfMeasure(item.systemOfMeasure)}"
@@ -30,13 +30,15 @@ class ClientsAdapter : ListAdapter<ClientModel, ClientsAdapter.ClientsViewHolder
 
             var formatter = DateTimeFormatter.ofPattern(DATE_FORMAT)
             binding.dob.text = item.dateOfBirth.format(formatter)
-
             Glide
                 .with(binding.photo.context)
                 .load(item.photo)
                 .centerCrop()
                 .placeholder(R.drawable.portrait_placeholder)
                 .into(binding.photo)
+            binding.editButton.setOnClickListener {
+                viewModel.editClient(adapterPosition)
+            }
         }
 
         private fun getUnitOfMeasure(system: SystemOfMeasure): String {

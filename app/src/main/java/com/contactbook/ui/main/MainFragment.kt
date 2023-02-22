@@ -5,8 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -17,11 +16,9 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
-class MainFragment : Fragment() {
+class MainFragment : BaseFragment() {
 
     private var _binding: FragmentMainBinding? = null
-    private val viewModel: MainViewModel by viewModels()
-
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -30,7 +27,13 @@ class MainFragment : Fragment() {
             viewModel.newClient()
             findNavController().navigate(R.id.action_mainFragment_to_editFragment)
         }
-        val clientAdapter = ClientsAdapter()
+
+        val editObserver = Observer<Boolean> {
+            findNavController().navigate(R.id.action_mainFragment_to_editFragment)
+        }
+        viewModel.editClient.observe(viewLifecycleOwner, editObserver)
+
+        val clientAdapter = ClientsAdapter(viewModel)
         viewModel.clientList
             .onEach {
                 updateUI(it.isEmpty())
